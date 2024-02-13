@@ -2,7 +2,7 @@
   "nodeName": "Security",
   "scope": {
     "OFF": [
-      "/providers/Microsoft.Management/managementGroups/EPAC-TEST"
+      "/providers/Microsoft.Management/managementGroups/EPAC-OFF"
     ]
   },
   "assignment": {
