@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/03055927-78bd-4236-86c0-f36125a10dc9",
+    "displayName": "NIST SP 800-171 Rev. 2"
+  },
+  "assignment": {
+    "name": "76a8706fab1e449a9d7bbff8",
+    "displayName": "NIST SP 800-171 Rev. 2",
+    "description": ""
+  },
+  "metadata": {
+    "parameterScopes": {}
+  },
+  "parameters": {
+    "includeArcMachines": "true",
+    "membersToIncludeInLocalAdministratorsGroup": "ap",
+    "membersToExcludeInLocalAdministratorsGroup": "ap",
+    "logAnalyticsWorkspaceIDForVMAgents": "DefaultWorkspace-6ac1c197-fd8b-47f1-a50b-8af7529031bc-SUK"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "quick-start": [
+      "/providers/Microsoft.Management/managementGroups/EPAC-TEST"
+    ]
+  },
+  "managedIdentityLocations": {
+    "quick-start": "eastus"
+  }
+}
