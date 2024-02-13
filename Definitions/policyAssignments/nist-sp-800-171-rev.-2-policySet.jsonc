@@ -22,7 +22,7 @@
   "overrides": [],
   "resourceSelectors": [],
   "scope": {
-    "quick-start": [
+    "epac-dec": [
       "/providers/Microsoft.Management/managementGroups/EPAC-TEST"
     ]
   },
