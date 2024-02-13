@@ -7,7 +7,7 @@
         ]
     },
     "parameters": {
-        "logAnalyticsWorkspaceId": "99438b86-1f74-4e03-b4e9-78fe69f6ac07" // Replace with your central Log Analytics workspace ID
+        "logAnalyticsWorkspaceId": "" // Replace with your central Log Analytics workspace ID
     },
     "children": [
         {

@@ -3,15 +3,15 @@
     "nodeName": "/Root/",
     "scope": {
         "tenant1": [ // Replace with your EPAC environment name and validate the management group listed below exists
-            "/providers/Microsoft.Management/managementGroups/Soniak"
+            "/providers/Microsoft.Management/managementGroups/intermediatelevelmanagementgroup"
         ]
     },
     "parameters": {
-        "logAnalytics": "99438b86-1f74-4e03-b4e9-78fe69f6ac07", // Replace with your central Log Analytics workspace ID
-        "logAnalytics_1": "99438b86-1f74-4e03-b4e9-78fe69f6ac07", // Replace with your central Log Analytics workspace ID
-        "emailSecurityContact": "raphael.boateng-amponsah@kainos.com", // Security contact email address for Microsoft Defender for Cloud
+        "logAnalytics": "", // Replace with your central Log Analytics workspace ID
+        "logAnalytics_1": "", // Replace with your central Log Analytics workspace ID
+        "emailSecurityContact": "", // Security contact email address for Microsoft Defender for Cloud
         "ascExportResourceGroupName": "mdfc-export", // Resource group to export Microsoft Defender for Cloud data to
-        "ascExportResourceGroupLocation": "uksouth" // Location of the resource group to export Microsoft Defender for Cloud data to
+        "ascExportResourceGroupLocation": "" // Location of the resource group to export Microsoft Defender for Cloud data to
     },
     "children": [
         {
