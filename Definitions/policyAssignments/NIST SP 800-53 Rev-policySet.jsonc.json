@@ -1,7 +1,7 @@
 {
   "nodeName": "Security",
   "scope": {
-    "production": [
+    "EPAC-DEV": [
       "/providers/Microsoft.Management/managementGroups/EPAC-TEST"
     ]
   },
