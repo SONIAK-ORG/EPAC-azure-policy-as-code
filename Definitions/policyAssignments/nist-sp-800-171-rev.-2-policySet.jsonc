@@ -22,7 +22,7 @@
   "overrides": [],
   "resourceSelectors": [],
   "scope": {
-    "epac-dec": [
+    "EPAC-DEV": [
       "/providers/Microsoft.Management/managementGroups/EPAC-TEST"
     ]
   },
