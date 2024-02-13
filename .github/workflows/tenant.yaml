@@ -82,84 +82,84 @@ jobs:
           path: Output
 
 
-  deployPolicy:
-    needs: build
-    name: Deploy Policy Plan
-    runs-on: ubuntu-latest
-    environment:
-      name: TENANT-DEPLOY-POLICY
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3.3.0
+  # deployPolicy:
+  #   needs: build
+  #   name: Deploy Policy Plan
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: TENANT-DEPLOY-POLICY
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3.3.0
 
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: deploymentPlan
+  #     - name: Download Artifact
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: deploymentPlan
 
-      - name: Copy Artifact directory to Output Folder
-        shell: pwsh
-        run: |
-          Copy-Item -Path ".\plans-${{ env.pacEnvironment }}" -Destination "$env:planFolder\plans-${{ env.pacEnvironment }}" -Recurse -Force
+  #     - name: Copy Artifact directory to Output Folder
+  #       shell: pwsh
+  #       run: |
+  #         Copy-Item -Path ".\plans-${{ env.pacEnvironment }}" -Destination "$env:planFolder\plans-${{ env.pacEnvironment }}" -Recurse -Force
 
-      - shell: pwsh
-        name: Install Required Modules
-        run: |
-          Install-Module Az.ResourceGraph -Force -Verbose -AllowClobber
-          Install-Module Az.Resources -Force -Verbose -AllowClobber
-          Install-Module EnterprisePolicyAsCode -Force
+  #     - shell: pwsh
+  #       name: Install Required Modules
+  #       run: |
+  #         Install-Module Az.ResourceGraph -Force -Verbose -AllowClobber
+  #         Install-Module Az.Resources -Force -Verbose -AllowClobber
+  #         Install-Module EnterprisePolicyAsCode -Force
 
-      - name: Azure Login
-        uses: Azure/login@v1
-        with:
-          creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","tenantId":"${{ secrets.TENANT_ID }}"}'
-          enable-AzPSSession: true
-          allow-no-subscriptions: true
+  #     - name: Azure Login
+  #       uses: Azure/login@v1
+  #       with:
+  #         creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+  #         enable-AzPSSession: true
+  #         allow-no-subscriptions: true
 
-      - name: Deploy Policy Plan
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            Deploy-PolicyPlan -definitionsRootFolder $env:definitionsRootFolder -inputFolder $env:planFolder -pacEnvironment $env:pacEnvironment
-          azPSVersion: "latest"
+  #     - name: Deploy Policy Plan
+  #       uses: azure/powershell@v1
+  #       with:
+  #         inlineScript: |
+  #           Deploy-PolicyPlan -definitionsRootFolder $env:definitionsRootFolder -inputFolder $env:planFolder -pacEnvironment $env:pacEnvironment
+  #         azPSVersion: "latest"
 
-  deployRoles:
-    needs: deployPolicy
-    name: Deploy Policy Roles
-    runs-on: ubuntu-latest
-    environment: 
-      name: TENANT-DEPLOY-ROLES
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3.3.0
+  # deployRoles:
+  #   needs: deployPolicy
+  #   name: Deploy Policy Roles
+  #   runs-on: ubuntu-latest
+  #   environment: 
+  #     name: TENANT-DEPLOY-ROLES
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3.3.0
 
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: deploymentPlan
+  #     - name: Download Artifact
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: deploymentPlan
 
-      - name: Copy Artifact directory to Output Folder
-        shell: pwsh
-        run: |
-          Copy-Item -Path ".\plans-${{ env.pacEnvironment }}" -Destination "$env:planFolder\plans-${{ env.pacEnvironment }}" -Recurse -Force
+  #     - name: Copy Artifact directory to Output Folder
+  #       shell: pwsh
+  #       run: |
+  #         Copy-Item -Path ".\plans-${{ env.pacEnvironment }}" -Destination "$env:planFolder\plans-${{ env.pacEnvironment }}" -Recurse -Force
 
-      - shell: pwsh
-        name: Install Required Modules
-        run: |
-          Install-Module Az.ResourceGraph -Force -Verbose -AllowClobber
-          Install-Module Az.Resources -Force -Verbose -AllowClobber
-          Install-Module EnterprisePolicyAsCode -Force
+  #     - shell: pwsh
+  #       name: Install Required Modules
+  #       run: |
+  #         Install-Module Az.ResourceGraph -Force -Verbose -AllowClobber
+  #         Install-Module Az.Resources -Force -Verbose -AllowClobber
+  #         Install-Module EnterprisePolicyAsCode -Force
 
-      - name: Azure Login
-        uses: Azure/login@v1
-        with:
-          creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","tenantId":"${{ secrets.TENANT_ID }}"}'
-          enable-AzPSSession: true
-          allow-no-subscriptions: true
+  #     - name: Azure Login
+  #       uses: Azure/login@v1
+  #       with:
+  #         creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+  #         enable-AzPSSession: true
+  #         allow-no-subscriptions: true
 
-      - name: Deploy Role Plan
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            Deploy-RolesPlan -definitionsRootFolder $env:definitionsRootFolder -inputFolder $env:planFolder -pacEnvironment $env:pacEnvironment
-          azPSVersion: "latest"
+  #     - name: Deploy Role Plan
+  #       uses: azure/powershell@v1
+  #       with:
+  #         inlineScript: |
+  #           Deploy-RolesPlan -definitionsRootFolder $env:definitionsRootFolder -inputFolder $env:planFolder -pacEnvironment $env:pacEnvironment
+  #         azPSVersion: "latest"
