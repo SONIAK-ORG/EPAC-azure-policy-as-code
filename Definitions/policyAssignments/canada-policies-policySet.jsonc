@@ -15,6 +15,13 @@
   },
   "parameters": {
 
+
+   "includeArcConnectedServersForGuestConfigurationPolicies": "false",
+    "logAnalyticsWorkspaceIdForVMs": "99438b86-1f74-4e03-b4e9-78fe69f6ac07",
+    "logAnalyticsWorkspaceIdforVMReporting": "99438b86-1f74-4e03-b4e9-78fe69f6ac07",
+    "listOfMembersToExcludeFromWindowsVMAdministratorsGroup": ["ashley"],
+    "listOfMembersToIncludeInWindowsVMAdministratorsGroup": ["raphael"],
+
   },
   "overrides": [],
   "resourceSelectors": [],
