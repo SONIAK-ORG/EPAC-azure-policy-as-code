@@ -16,7 +16,7 @@
   "parameters": {
     "logAnalyticsWorkspaceIdforVMReporting": "99438b86-1f74-4e03-b4e9-78fe69f6ac07"
     "includeArcConnectedServersForGuestConfigurationPolicies": "false",
-    "logAnalyticsWorkspaceIdForVMs": "99438b86-1f74-4e03-b4e9-78fe69f6ac07",
+    "logAnalyticsWorkspaceIdForVMs": "Auditors",
     "resourceTypesToHaveResourceLogsEnabled": [
       "Microsoft.AnalysisServices/servers",
       "Microsoft.ApiManagement/service",
