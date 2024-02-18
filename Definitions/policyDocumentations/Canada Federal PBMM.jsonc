@@ -1,0 +1,80 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+    "nodeName": "/root",
+    "definitionEntry": {
+      "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/4c4a5f27-de81-430b-b4e5-9cbd50595a87",
+      "displayName": "Include Arc connected servers for Guest Configuration policies"
+    },
+    "assignment": {
+      "name": "Name not specified",
+      "displayName": "Display Name not specified",
+      "description": "Description not specified"
+    },
+    "metadata": {
+      "parameterScopes": {}
+    },
+    "parameters": {
+      "includeArcConnectedServersForGuestConfigurationPolicies": "false",
+      "logAnalyticsWorkspaceIdForVMs": "Log Analytics Workspace Id not specified",
+      "resourceTypesToHaveResourceLogsEnabled": [
+        "Microsoft.AnalysisServices/servers",
+        "Microsoft.ApiManagement/service",
+        "Microsoft.Network/applicationGateways",
+        "Microsoft.Automation/automationAccounts",
+        "Microsoft.ContainerInstance/containerGroups",
+        "Microsoft.ContainerRegistry/registries",
+        "Microsoft.ContainerService/managedClusters",
+        "Microsoft.Batch/batchAccounts",
+        "Microsoft.Cdn/profiles/endpoints",
+        "Microsoft.CognitiveServices/accounts",
+        "Microsoft.DocumentDB/databaseAccounts",
+        "Microsoft.DataFactory/factories",
+        "Microsoft.DataLakeAnalytics/accounts",
+        "Microsoft.DataLakeStore/accounts",
+        "Microsoft.EventGrid/eventSubscriptions",
+        "Microsoft.EventGrid/topics",
+        "Microsoft.EventHub/namespaces",
+        "Microsoft.Network/expressRouteCircuits",
+        "Microsoft.Network/azureFirewalls",
+        "Microsoft.HDInsight/clusters",
+        "Microsoft.Devices/IotHubs",
+        "Microsoft.KeyVault/vaults",
+        "Microsoft.Network/loadBalancers",
+        "Microsoft.Logic/integrationAccounts",
+        "Microsoft.Logic/workflows",
+        "Microsoft.DBforMySQL/servers",
+        "Microsoft.Network/networkInterfaces",
+        "Microsoft.Network/networkSecurityGroups",
+        "Microsoft.DBforPostgreSQL/servers",
+        "Microsoft.PowerBIDedicated/capacities",
+        "Microsoft.Network/publicIPAddresses",
+        "Microsoft.RecoveryServices/vaults",
+        "Microsoft.Cache/redis",
+        "Microsoft.Relay/namespaces",
+        "Microsoft.Search/searchServices",
+        "Microsoft.ServiceBus/namespaces",
+        "Microsoft.SignalRService/SignalR",
+        "Microsoft.Sql/servers/databases",
+        "Microsoft.Sql/servers/elasticPools",
+        "Microsoft.StreamAnalytics/streamingjobs",
+        "Microsoft.TimeSeriesInsights/environments",
+        "Microsoft.Network/trafficManagerProfiles",
+        "Microsoft.Compute/virtualMachines",
+        "Microsoft.Compute/virtualMachineScaleSets",
+        "Microsoft.Network/virtualNetworks",
+        "Microsoft.Network/virtualNetworkGateways"
+      ],
+      "includeLogsWhenAuditingDiagnosticLoggingSettings": "true",
+      "includeMetricsWhenAuditingDiagnosticLoggingSettings": "true",
+      "membersToExclude": "none",
+      "membersToInclude": "none"
+    },
+    "overrides": [],
+    "resourceSelectors": [],
+    "scope": {
+      "Scope not specified": []
+    },
+    "managedIdentityLocations": {
+      "quick-start": "Location not specified"
+    }
+  }
