@@ -15,7 +15,7 @@
   },
   "parameters": {
     "includeArcConnectedServersForGuestConfigurationPolicies": "false",
-    "logAnalyticsWorkspaceIdForVMs": "Log Analytics Workspace Id not specified",
+    "logAnalyticsWorkspaceIdForVMs": "99438b86-1f74-4e03-b4e9-78fe69f6ac07",
     "resourceTypesToHaveResourceLogsEnabled": [
       "Microsoft.AnalysisServices/servers",
       "Microsoft.ApiManagement/service",
