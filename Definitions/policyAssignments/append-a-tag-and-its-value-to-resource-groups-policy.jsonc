@@ -20,7 +20,7 @@
   "overrides": [],
   "resourceSelectors": [],
   "scope": {
-    "EPAC-Canary-lower": [
+    "EPAC-DEV": [
       "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
     ]
   }
