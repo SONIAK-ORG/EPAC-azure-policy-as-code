@@ -1,0 +1,237 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+  "name": "Deploy-MDFC-SQL-DefenderSQL",
+  "properties": {
+    "displayName": "Configure SQL Virtual Machines to automatically install Microsoft Defender for SQL",
+    "description": "Configure Windows SQL Virtual Machines to automatically install the Microsoft Defender for SQL extension. Microsoft Defender for SQL collects events from the agent and uses them to provide security alerts and tailored hardening tasks (recommendations).",
+    "mode": "Indexed",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Security Center",
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud",
+        "AzureChinaCloud",
+        "AzureUSGovernment"
+      ]
+    },
+    "parameters": {
+      "effect": {
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "metadata": {
+          "description": "Enable or disable the execution of the policy",
+          "displayName": "Effect"
+        },
+        "defaultValue": "DeployIfNotExists",
+        "type": "String"
+      },
+      "workspaceRegion": {
+        "metadata": {
+          "description": "Region of the Log Analytics workspace destination for the Data Collection Rule.",
+          "displayName": "Workspace region",
+          "strongType": "location"
+        },
+        "type": "String"
+      },
+      "dcrResourceGroup": {
+        "metadata": {
+          "description": "Resource Group of the Data Collection Rule.",
+          "displayName": "Data Collection Rule Resource Group"
+        },
+        "type": "String"
+      },
+      "dcrName": {
+        "metadata": {
+          "description": "Name of the Data Collection Rule.",
+          "displayName": "Data Collection Rule Name"
+        },
+        "type": "String"
+      },
+      "dcrId": {
+        "metadata": {
+          "description": "Id of the Data Collection Rule.",
+          "displayName": "Data Collection Rule Id"
+        },
+        "type": "String"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Compute/virtualMachines"
+          },
+          {
+            "field": "Microsoft.Compute/virtualMachines/storageProfile.osDisk.osType",
+            "like": "Windows*"
+          },
+          {
+            "field": "Microsoft.Compute/imagePublisher",
+            "equals": "microsoftsqlserver"
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "type": "Microsoft.Compute/virtualMachines/extensions",
+          "existenceCondition": {
+            "allOf": [
+              {
+                "field": "Microsoft.Compute/virtualMachines/extensions/type",
+                "equals": "AdvancedThreatProtection.Windows"
+              },
+              {
+                "field": "Microsoft.Compute/virtualMachines/extensions/publisher",
+                "equals": "Microsoft.Azure.AzureDefenderForSQL"
+              },
+              {
+                "field": "Microsoft.Compute/virtualMachines/extensions/provisioningState",
+                "in": [
+                  "Succeeded",
+                  "Provisioning succeeded"
+                ]
+              }
+            ]
+          },
+          "roleDefinitionIds": [
+            "/providers/microsoft.authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+            "/providers/microsoft.authorization/roleDefinitions/92aaf0da-9dab-42b6-94a3-d43ce8d16293"
+          ],
+          "deployment": {
+            "properties": {
+              "parameters": {
+                "location": {
+                  "value": "[field('location')]"
+                },
+                "vmName": {
+                  "value": "[field('name')]"
+                },
+                "workspaceRegion": {
+                  "value": "[parameters('workspaceRegion')]"
+                },
+                "dcrResourceGroup": {
+                  "value": "[parameters('dcrResourceGroup')]"
+                },
+                "dcrName": {
+                  "value": "[parameters('dcrName')]"
+                },
+                "dcrId": {
+                  "value": "[parameters('dcrId')]"
+                }
+              },
+              "mode": "incremental",
+              "template": {
+                "parameters": {
+                  "location": {
+                    "type": "string"
+                  },
+                  "vmName": {
+                    "type": "string"
+                  },
+                  "workspaceRegion": {
+                    "type": "string"
+                  },
+                  "dcrResourceGroup": {
+                    "type": "string"
+                  },
+                  "dcrName": {
+                    "type": "string"
+                  },
+                  "dcrId": {
+                    "type": "string"
+                  }
+                },
+                "contentVersion": "1.0.0.0",
+                "resources": [
+                  {
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "properties": {
+                      "type": "AdvancedThreatProtection.Windows",
+                      "autoUpgradeMinorVersion": true,
+                      "typeHandlerVersion": "2.0",
+                      "publisher": "Microsoft.Azure.AzureDefenderForSQL",
+                      "enableAutomaticUpgrade": true
+                    },
+                    "location": "[parameters('location')]",
+                    "apiVersion": "2023-03-01",
+                    "name": "[concat(parameters('vmName'), '/', 'MicrosoftDefenderForSQL')]",
+                    "dependsOn": [
+                      "[extensionResourceId(concat('/subscriptions/', variables('subscriptionId'), '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachines/', parameters('vmName')), 'Microsoft.Insights/dataCollectionRuleAssociations','MicrosoftDefenderForSQL-RulesAssociation')]"
+                    ],
+                    "tags": {
+                      "createdBy": "MicrosoftDefenderForSQL"
+                    }
+                  },
+                  {
+                    "type": "Microsoft.Compute/virtualMachines/providers/dataCollectionRuleAssociations",
+                    "properties": {
+                      "description": "Configure association between SQL Virtual Machine and the Microsoft Defender for SQL DCR. Deleting this association will break the detection of security vulnerabilities for this SQL Virtual Machine.",
+                      "dataCollectionRuleId": "[variables('dcrId')]"
+                    },
+                    "apiVersion": "2021-04-01",
+                    "name": "[variables('dcraName')]"
+                  }
+                ],
+                "variables": {
+                  "subscriptionId": "[subscription().subscriptionId]",
+                  "locationLongNameToShortMap": {
+                    "southcentralus": "SCUS",
+                    "canadacentral": "CCA",
+                    "westcentralus": "WCUS",
+                    "eastus2euap": "eus2p",
+                    "centralus": "CUS",
+                    "canadaeast": "CCA",
+                    "eastus2": "EUS2",
+                    "westus2": "WUS2",
+                    "germanywestcentral": "DEWC",
+                    "australiasoutheast": "SEAU",
+                    "westus": "WUS",
+                    "eastus": "EUS",
+                    "southafricanorth": "JNB",
+                    "australiacentral": "CAU",
+                    "switzerlandnorth": "CHN",
+                    "switzerlandwest": "CHW",
+                    "northeurope": "NEU",
+                    "southeastasia": "SEA",
+                    "northcentralus": "NCUS",
+                    "westeurope": "WEU",
+                    "swedencentral": "SEC",
+                    "francecentral": "PAR",
+                    "australiaeast": "EAU",
+                    "koreacentral": "SE",
+                    "centralindia": "CIN",
+                    "brazilsouth": "CQ",
+                    "jioindiawest": "CIN",
+                    "norwayeast": "NOE",
+                    "japaneast": "EJP",
+                    "koreasouth": "SE",
+                    "southindia": "CIN",
+                    "westindia": "CIN",
+                    "eastasia": "EA",
+                    "uaenorth": "DXB",
+                    "uksouth": "SUK",
+                    "ukwest": "WUK"
+                  },
+                  "dcrName": "[parameters('dcrName')]",
+                  "dcraName": "[concat(parameters('vmName'),'/Microsoft.Insights/MicrosoftDefenderForSQL-RulesAssociation')]",
+                  "dcrId": "[parameters('dcrId')]",
+                  "locationCode": "[if(contains(variables('locationLongNameToShortMap'), variables('actualLocation')), variables('locationLongNameToShortMap')[variables('actualLocation')], variables('actualLocation'))]",
+                  "defaultRGName": "[parameters('dcrResourceGroup')]",
+                  "actualLocation": "[if(empty(parameters('workspaceRegion')), parameters('location'), parameters('workspaceRegion'))]"
+                },
+                "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#"
+              }
+            }
+          },
+          "name": "[concat(field('fullName'), '/MicrosoftDefenderForSQL')]",
+          "evaluationDelay": "AfterProvisioning"
+        }
+      }
+    }
+  }
+}

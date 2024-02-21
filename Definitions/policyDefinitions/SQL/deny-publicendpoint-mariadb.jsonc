@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+  "name": "Deny-PublicEndpoint-MariaDB",
+  "properties": {
+    "displayName": "[Deprecated] Public network access should be disabled for MariaDB",
+    "description": "This policy denies the creation of Maria DB accounts with exposed public endpoints. Superseded by https://www.azadvertizer.net/azpolicyadvertizer/fdccbe47-f3e3-4213-ad5d-ea459b2fa077.html",
+    "mode": "Indexed",
+    "metadata": {
+      "supersededBy": "fdccbe47-f3e3-4213-ad5d-ea459b2fa077",
+      "version": "1.0.0-deprecated",
+      "category": "SQL",
+      "deprecated": true,
+      "source": "https://github.com/Azure/Enterprise-Scale/",
+      "alzCloudEnvironments": [
+        "AzureCloud",
+        "AzureChinaCloud",
+        "AzureUSGovernment"
+      ]
+    },
+    "parameters": {
+      "effect": {
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "metadata": {
+          "description": "Enable or disable the execution of the policy",
+          "displayName": "Effect"
+        },
+        "defaultValue": "Deny",
+        "type": "String"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.DBforMariaDB/servers"
+          },
+          {
+            "field": "Microsoft.DBforMariaDB/servers/publicNetworkAccess",
+            "notequals": "Disabled"
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]"
+      }
+    }
+  }
+}

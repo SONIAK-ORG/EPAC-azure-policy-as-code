@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/49c88fc8-6fd1-46fd-a676-f12d1d3a4c71",
+    "displayName": "Append a tag and its value to resource groups"
+  },
+  "assignment": {
+    "name": "d9a59110525746c08b8dc4c4",
+    "displayName": "Append a tag and its value to resource groups",
+    "description": ""
+  },
+  "metadata": {
+    "parameterScopes": {}
+  },
+  "parameters": {
+    "tagValue": "kainos",
+    "tagName": "soniak"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "EPAC-Canary-lower": [
+      "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    ]
+  }
+}

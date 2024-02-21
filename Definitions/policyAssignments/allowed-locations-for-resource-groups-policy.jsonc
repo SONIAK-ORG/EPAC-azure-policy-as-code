@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+    "displayName": "Allowed locations for resource groups"
+  },
+  "assignment": {
+    "name": "375d8b12fffa4830bb8f4420",
+    "displayName": "Allowed locations for resource groups",
+    "description": ""
+  },
+  "metadata": {
+    "parameterScopes": {
+      "listOfAllowedLocations": "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    }
+  },
+  "parameters": {
+    "listOfAllowedLocations": [
+      "ukwest",
+      "uksouth"
+    ]
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "EPAC-Canary-lower": [
+      "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    ]
+  }
+}

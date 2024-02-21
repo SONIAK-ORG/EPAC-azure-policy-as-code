@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/cccc23c7-8427-4f53-ad12-b6a63eb452b3",
+    "displayName": "Allowed virtual machine size SKUs"
+  },
+  "assignment": {
+    "name": "0e502077493b4e51b90f60bd",
+    "displayName": "Allowed virtual machine size SKUs",
+    "description": ""
+  },
+  "metadata": {
+    "parameterScopes": {
+      "listOfAllowedSKUs": "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    }
+  },
+  "parameters": {
+    "listOfAllowedSKUs": [
+      "standard_a0",
+      "standard_a1"
+    ]
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "EPAC-Canary-lower": [
+      "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/6c112d4e-5bc7-47ae-a041-ea2d9dccd749",
+    "displayName": "Not allowed resource types"
+  },
+  "assignment": {
+    "name": "657f511e36784380844a004b",
+    "displayName": "Not allowed resource types",
+    "description": ""
+  },
+  "metadata": {
+    "parameterScopes": {
+      "listOfResourceTypesNotAllowed": "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    }
+  },
+  "parameters": {
+    "listOfResourceTypesNotAllowed": [
+      "microsoft.classicnetwork/virtualnetworks",
+      "microsoft.classicnetwork/virtualnetworks/remotevirtualnetworkpeeringproxies",
+      "microsoft.classicnetwork/virtualnetworks/virtualnetworkpeerings"
+    ]
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "EPAC-Canary-lower": [
+      "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    ]
+  }
+}

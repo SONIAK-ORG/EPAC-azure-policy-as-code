@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/3937f550-eedd-4639-9c5e-294358be442e",
+    "displayName": "UK OFFICIAL and UK NHS"
+  },
+  "assignment": {
+    "name": "f495923f3af7495caf80bb85",
+    "displayName": "UK OFFICIAL and UK NHS",
+    "description": ""
+  },
+  "metadata": {
+    "parameterScopes": {}
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "EPAC-Canary-lower": [
+      "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    ]
+  },
+  "managedIdentityLocations": {
+    "EPAC-Canary-lower": "eastus"
+  }
+}

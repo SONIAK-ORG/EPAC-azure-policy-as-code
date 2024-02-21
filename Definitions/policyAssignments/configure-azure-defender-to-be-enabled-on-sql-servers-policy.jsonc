@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/36d49e87-48c4-4f2e-beed-ba4ed02b71f5",
+    "displayName": "Configure Azure Defender to be enabled on SQL servers"
+  },
+  "assignment": {
+    "name": "006ae962c024424e9f46f6fe",
+    "displayName": "Configure Azure Defender to be enabled on SQL servers",
+    "description": ""
+  },
+  "metadata": {
+    "parameterScopes": {}
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "EPAC-Canary-lower": [
+      "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    ]
+  },
+  "managedIdentityLocations": {
+    "EPAC-Canary-lower": "eastus"
+  }
+}
