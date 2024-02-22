@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/0868462e-646c-4fe3-9ced-a733534b6a2c",
+    "displayName": "Deploy - Configure Log Analytics extension to be enabled on Windows virtual machines"
+  },
+  "assignment": {
+    "name": "0e502077493b4e51b90f60bd",
+    "displayName": "Deploy - Configure Log Analytics extension to be enabled on Windows virtual machines",
+    "description": ""
+  },
+  "metadata": {
+    "parameterScopes": {
+      "listOfAllowedSKUs": "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    }
+  },
+  "parameters": {
+    "logAnalytics": [
+      "Auditors"
+    ]
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "EPAC-Canary-lower": [
+      "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+    ]
+  }
+}
