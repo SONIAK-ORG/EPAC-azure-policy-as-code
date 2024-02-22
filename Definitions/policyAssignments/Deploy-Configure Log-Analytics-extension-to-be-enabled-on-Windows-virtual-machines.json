@@ -12,7 +12,6 @@
   },
   "metadata": {
     "parameterScopes": {
-      "listOfAllowedSKUs": "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
     }
   },
   "parameters": {
@@ -23,7 +22,7 @@
   "overrides": [],
   "resourceSelectors": [],
   "scope": {
-    "EPAC-Canary-lower": [
+    "EPAC-DEV": [
       "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
     ]
   }
