@@ -15,9 +15,8 @@
     }
   },
   "parameters": {
-    "logAnalytics": [
+    "logAnalytics":
       "Auditors"
-    ]
   },
   "overrides": [],
   "resourceSelectors": [],
