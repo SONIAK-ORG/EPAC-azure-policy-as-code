@@ -16,7 +16,7 @@
   "overrides": [],
   "resourceSelectors": [],
   "scope": {
-    "EPAC-DEV": [
+    "EPAC-dev": [
       "/providers/Microsoft.Management/managementGroups/soniak-alz"
     ]
   },
