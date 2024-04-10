@@ -12,9 +12,4 @@
     "managedIdentityLocations": {
         "*": "eastus2"
     },
-    "globalNotScopes": {
-        "*": [
-            "/resourceGroupPatterns/excluded-rg*"
-        ]
-    }
 }
