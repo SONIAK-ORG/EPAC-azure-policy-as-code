@@ -5,7 +5,7 @@
         {
             "pacSelector": "epac-dev",
             "cloud": "AzureCloud",
-            "tenantId": "00000000-0000-0000-0000-000000000000",
+            "tenantId": "832b0908-3585-4294-a01c-7763fc195006",
             "deploymentRootScope": "/providers/Microsoft.Management/managementGroups/soniak-alz",
             "desiredState": {
                 "strategy": "full",
