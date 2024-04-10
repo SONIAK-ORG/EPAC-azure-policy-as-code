@@ -21,6 +21,6 @@
     ]
   },
   "managedIdentityLocations": {
-    "EPAC-Canary-lower": "eastus"
+    "*": "eastus"
   }
 }
