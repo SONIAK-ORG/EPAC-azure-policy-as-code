@@ -17,7 +17,7 @@
   "resourceSelectors": [],
   "scope": {
     "EPAC-DEV": [
-      "/providers/Microsoft.Management/managementGroups/EPAC-Canary-lower"
+      "/providers/Microsoft.Management/managementGroups/soniak-alz"
     ]
   },
   "managedIdentityLocations": {
