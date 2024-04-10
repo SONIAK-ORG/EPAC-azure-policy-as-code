@@ -3,7 +3,7 @@
     "pacOwnerId": "c5f19c47-3ebe-40a4-8a5e-7bfb77249c47",
     "pacEnvironments": [
         {
-            "pacSelector": "epac-dev",
+            "pacSelector": "EPAC-dev",
             "cloud": "AzureCloud",
             "tenantId": "832b0908-3585-4294-a01c-7763fc195006",
             "deploymentRootScope": "/providers/Microsoft.Management/managementGroups/soniak-alz",
