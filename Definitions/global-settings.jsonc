@@ -5,11 +5,13 @@
         {
             "pacSelector": "epac-dev",
             "cloud": "AzureCloud",
-            "tenantId": "77777777-8888-9999-1111-222222222222",
-            "deploymentRootScope": "/providers/Microsoft.Management/managementGroups/soniak-alz"
+            "tenantId": "00000000-0000-0000-0000-000000000000",
+            "deploymentRootScope": "/providers/Microsoft.Management/managementGroups/soniak-alz",
+            "desiredState": {
+                "strategy": "full",
+                "keepDfcSecurityAssignments": false
+            },
+            "managedIdentityLocation": "eastus2"
         }
-    ],
-    "managedIdentityLocations": {
-        "*": "eastus2"
-    },
+    ]
 }
